@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod 
+metadata:
+  labels:
+    app: {{ .Chart.Name }}-{{ .Chart.Version }}
+  name: {{ .Chart.Name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  containers:
+  - image: {{ .Values.nginx_image.repository }}:{{ .Values.nginx_image.tag }}
+    name: nginx
+    resources:
+      limits:
+        memory: {{ .Values.resources.limits.memory }}
+        cpu: {{ .Values.resources.limits.cpu }}
